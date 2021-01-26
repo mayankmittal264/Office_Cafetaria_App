@@ -1,0 +1,175 @@
+{% load static %}
+<HTML>
+	<HEAD>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Office Cafetaria App</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link href="{% static 'css/style.css' %}" rel="stylesheet">
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
+		<script type="text/javascript" href="{% static 'js/script1.js' %}">
+		$(document).ready( function(){
+			$('#Submit').on('click', function(e) {
+				e.preventDefault();
+				validate();
+			});
+		});
+function validate(){
+    var validation = true;
+    if($('input[name="fname"]').val().length > 10 | $('input[name="lname"]').val().length > 10 | /^[A-Za-z]+$/.test($('input[name="fname"]').val())==false | $('input[name="lname"]').val().match(/^[A-Za-z]+$/)==false)
+    {
+    validation = false;
+    data = '<p><strong>please give your correct name.</strong></p>';
+    }
+   else if($('input[name="oname"]').val().length > 10 | /^[A-Za-z ]+$/.test($('input[name="oname"]').val())==false)
+    {
+    validation = false;
+    data = '<p><strong>please give correct Organization name.</strong></p>';
+    }
+   else if($('input[name="eid"]').val().length > 10 | /^[A-Za-z0-9]+$/.test($('input[name="eid"]').val())==false )
+    {
+    validation = false;
+    data = '<p><strong>please give correct Employee ID.</strong></p>';
+    }
+    else if($('input[name="mono"]').val().length != 10 | /^[0-9]+$/.test($('input[name="mono"]').val())==false)
+    {
+    validation = false;
+    data = '<p><strong>please give correct 10 digit Mobile number. Avoid prefixes.</strong></p>';
+    }
+    else if($('input[name="email"]').val().length > 50 | /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i.test($('input[name="email"]').val())==false)
+    {
+    validation = false;
+    data = '<p><strong>Please give correct Email ID.</strong></p>';
+    }
+    if(validation==true)
+    {
+    preview();
+    }
+    else
+    {
+        $('#preview_data').html('');
+		$('#preview_data').append(data);
+		$('#preview_data').dialog({
+			resizable: false,
+			//height:140,
+			modal: true,
+			buttons: {
+				Back: function() {
+					$(this).dialog("close");
+				}
+			}
+		});
+    }
+}
+function preview(){
+		var Name = $('input[name="fname"]').val() + " " + $('input[name="lname"]').val();
+		var Name_label = $('label[for="fname"]').text();
+		var Name_data = '<p><strong>' + Name_label + '</strong> : ' + Name + '</p>';
+
+		var Oname = $('input[name="oname"]').val();
+		var Oname_label = $('label[for="oname"]').text();
+		var Oname_data = '<p><strong>' + Oname_label + '</strong> : ' + Oname + '</p>';
+
+		var Empid = $('input[name="eid"]').val();
+		var Empid_label = $('label[for="eid"]').text();
+		var Empid_data = '<p><strong>' + Empid_label + '</strong> : ' + Empid + '</p>';
+
+		var Mobile = $('input[name="mono"]').val();
+		var Mobile_label = $('label[for="mono"]').text();
+		var Mobile_data = '<p><strong>' + Mobile_label + '</strong> : ' + Mobile + '</p>';
+
+		var Email = $('input[name="email"]').val();
+		var Email_label = $('label[for="email"]').text();
+		var Email_data = '<p><strong>' + Email_label + '</strong> : ' + Email + '</p>';
+
+		var message_data = '<h><strong>Please make sure this information is correct before submitting your request</strong><h>'
+		var data =  message_data + Name_data + Oname_data + Empid_data + Mobile_data + Email_data;
+		$('#preview_data').html('');
+		$('#preview_data').append(data);
+		$('#preview_data').dialog({
+			resizable: false,
+			//height:140,
+			modal: true,
+			buttons: {
+				'Submit': function() {
+					submit();
+				},
+				Cancel: function() {
+					$(this).dialog("close");
+				}
+			}
+		});
+
+    }
+
+function submit(){
+	$("form")[0].submit();
+	$('#preview_data').dialog("close");
+}
+		</script>
+	</HEAD>
+		<BODY>
+		<div id="header-wrapper" class="container" style="background: url({% static 'img/background.jpg' %}) no-repeat center;background-size: cover;">
+			<div id="header" >
+				<div id="logo">
+					<h1><a>Cafetaria</a></h1>
+				</div>
+				<div id="menu">
+					<ul>
+						<li><a href="#header-wrapper" accesskey="1" title="">Homepage</a></li>
+						<li><a href="#about" accesskey="2" title="">About Us</a></li>
+						<li><a href="#contact" accesskey="3" title="">Contact Us</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="banner">
+				<div class="title">
+					<h2>Office Cafetaria App</h2>
+					<h3 class="subtext">pseudo full-stack app for Office cafeteria</h3>
+				</div>
+			</div>
+		</div>
+		<div id="wrapper">
+			<div class="container">
+				<div>
+					<h2>Please fill this form:-</h2>
+					<fieldset>
+					<form id="form" name="myform" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                        {{form.media}}
+						{{form.as_p}}
+						<label for="fname">Name:</label><br>
+						<input type="text" id="fname" name="fname" placeholder="First Name">
+						<input type="text" id="lname" name="lname" placeholder="Last Name"><br>
+						<label for="oname">Organization name:</label><br>
+						<input type="text" id="oname" name="oname" placeholder="Organization Name"><br>
+						<label for="eid">Employee Id:</label><br>
+						<input type="text" id="eid" name="eid" placeholder="Employee ID"><br>
+						<label for="mono">Mobile number:</label><br>
+						<input type="text" id="mono" name="mono" placeholder="Mobile number"><br>
+						<label for="email">Email Id:</label><br>
+						<input type="text" id="email" name="email" placeholder="Email Id"><br>
+						<label for="img">Upload ID Card:</label><br>
+						<input type="file" id="img" name="img" accept="image/*"><br>
+						<input type="button" name="Submit" id="Submit" value="Submit"/>
+					</form>
+					</fieldset>
+				</div>
+				<div id="preview_data" title="Preview Form Data" style="display:none;"></div>
+			</div>
+		</div>
+		<div id="about" style="background: url({% static 'img/background2.jpg' %}) no-repeat center;background-size: cover;">
+			<div class="container">
+				<div class="title">
+					<h2>About US</h2>
+				</div>
+				<p>[Objective] - Develop a pseudo full-stack app for office cafeteria</p>
+			</div>
+		</div>
+		<div id="contact" class="container">
+			<p>&copy; 2021, Mayank Mittal.</p>
+			<p>contact no.- 7898525659</p>
+		</div>
+	</BODY>
+</HTML>

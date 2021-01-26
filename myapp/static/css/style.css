@@ -1,0 +1,207 @@
+html, body
+{
+	height: 100%;
+}
+
+body
+{
+	margin: 0px;
+	padding: 0px;
+	background: #000000;
+	font-family: 'Bookman', sans-serif;
+	font-size: 12pt;
+	font-weight: 200;
+	color: #FFFFFF;
+}
+
+h1, h2, h3
+{
+	margin: 0;
+	padding: 0;
+}
+
+p, ol, ul
+{
+	margin-top: 0;
+}
+
+ol, ul
+{
+	padding: 0;
+	list-style: none;
+}
+
+p
+{
+	line-height: 180%;
+}
+
+a
+{
+	color: #ffffff;
+}
+
+a:hover
+{
+	color: #c0c0c0;
+}
+
+.container
+{
+	overflow: hidden;
+	margin: 0em auto;
+	width: auto;
+}
+.subtext
+{
+	font-size: 30px;
+	font-family: 'Helvetica', sans-sarif;
+	color: rgba(255,255,255,0.60);
+}
+
+/*********************************************************************************/
+/* Header                                                                        */
+/*********************************************************************************/
+
+#wrapper
+{
+	position: relative;
+	padding: 5em 0em 7em 0em;
+	background: #FFFFFF;
+	color: #000000;
+}
+
+#header-wrapper
+{
+	position: relative;
+	padding: 5em 0em 5em 0em;
+
+}
+
+#header
+{
+	position: relative;
+	padding: 5em 0em;
+	color: c0c0c0;
+}
+
+/*********************************************************************************/
+/* logo                                                                          */
+/*********************************************************************************/
+#logo
+{
+	position: relative;
+	top: 0;
+	left: 5em;
+}
+/*********************************************************************************/
+/* Menu                                                                          */
+/*********************************************************************************/
+
+#menu
+{
+	position: absolute;
+	top: 4.5em;
+	right: 0;
+}
+
+#menu li
+{
+	display: block;
+	float: left;
+	text-align: center;
+}
+
+#menu li a
+{
+	padding: 1em 1em;
+	letter-spacing: 1px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 0.8em;
+}
+
+/*********************************************************************************/
+/* Banner                                                                        */
+/*********************************************************************************/
+
+	#banner
+	{
+		padding-top: 10em;
+		text-align: center;
+	}
+
+	#banner h2
+	{
+		font-size: 4em;
+	}
+
+/*********************************************************************************/
+/* Form                                                                          */
+/*********************************************************************************/
+
+	#form
+	{
+		position: relative;
+		font size: 12px;
+		font-family: 'Bookman', sans-serif;
+		padding-top: 2em;
+		display: table;
+		vertical-align:center;
+		margin: auto;
+	}
+
+	#form label
+	{
+		text-align: left;
+		margin: 1em auto;
+
+	}
+
+	#form input
+	{
+		width: auto;
+		height: 3em;
+		padding: 12px 12px;
+		margin: 8px 2px;
+		display: inline-block;
+		border: 1px solid #cccccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+	}
+
+/*********************************************************************************/
+/* About US                                                                      */
+/*********************************************************************************/
+
+#about
+{
+	position: relative;
+	padding: 7em 0em 7em 0em;
+	text-align: center;
+}
+
+#about .container
+{
+	width: 1000px;
+	padding: 0px 100px;
+	color: rgba(255,255,255,0.8);
+}
+
+/*********************************************************************************/
+/* Contact                                                                     */
+/*********************************************************************************/
+
+	#contact
+	{
+		overflow: hidden;
+		padding: 5em 0em;
+		border-top: 1px solid rgba(0,0,0,0.08);
+	}
+
+	#contact p
+	{
+		text-align: center;
+		font-size: 1em;
+		color: rgba(255,255,255,0.3);
+	}
